@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+/*
+$light:                 #fff !default;
+$stable:                #f8f8f8 !default;
+$positive:              #4a87ee !default;
+$calm:                  #43cee6 !default;
+$balanced:              #66cc33 !default;
+$energized:             #f0b840 !default;
+$assertive:             #ef4e3a !default;
+$royal:                 #8a6de9 !default;
+$dark:                  #444 !default;
+*/
+
+$ionicons-font-path: "../lib/ionic/fonts";
+
+@import "../www/lib/ionic/scss/ionic";
+
+
+$bar-darker-bg: #222433 !default;
+$bar-darker-text: white !default;
+
+.bar {
+  &.bar-darker {
+    @include bar-style($bar-darker-bg, $bar-dark-border, $bar-darker-text);
+    .title {
+      font-weight: bold;
+    }
+    .button {
+      @include button-style($bar-darker-bg, $bar-dark-border, $bar-dark-active-bg, $bar-dark-active-border, $bar-darker-text);
+      @include button-clear(#fff, $bar-title-font-size);
+    }
+  }
+}

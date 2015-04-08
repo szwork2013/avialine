@@ -1,0 +1,46 @@
+<ion-view title="{{product.title}}">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios-search-strong search-button" ng-click="search()"></button>
+    </ion-nav-buttons>
+    <ion-content class="item-card" scroll="false">
+        <div class="itemcard-image" ng-style="{'background-image': 'url('+baseUrl+product.picture+')'}"></div>
+        <div class="itemcard-price row">
+            <div class="col col-75 align middle">
+                <span class="color-white font-size-09">Цена: </span>
+                <span class="color-orange font-size-14">{{product.price['eur']}} EUR </span>
+                <span class="color-white font-size-14">({{product.price['rub']}} RUR)</span>
+            </div>
+            <div class="butt align middle col  col-20">
+                <button class="button  button-icon icon ion-star button-small"></button>
+            </div>
+        </div>
+        <ion-scroll direction="y" class="itemcard-description color-easyBlue">
+            <div>
+                {{product.description}}
+            </div>
+        </ion-scroll>
+        <div class="itemcard-footer row" ng-init="quanity = 1">
+            <div class="col  col-20">
+                <div class="cart-arrow">
+                    <button class="button button-icon icon ion-ios-arrow-up button-small"
+                            ng-click="quanity=quanity+1"></button>
+                </div>
+            </div>
+
+            <div class="cart-item-quantity col col-20">
+                <div class="font-size-2 color-hardBlue" ng-bind="quanity"></div>
+            </div>
+            <div class="col  col-20">
+                <div class="cart-arrow">
+                    <button class="button button-icon icon ion-ios-arrow-down button-small"
+                            ng-click="quanity=quanity > 1 ? quanity-1 : 1"></button>
+                </div>
+            </div>
+            <div class=" color-hardBlue font-size-12  cart-buy  col " ng-click="addToCart(product, quanity)">
+                <div>
+                    В корзину
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

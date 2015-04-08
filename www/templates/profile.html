@@ -1,0 +1,61 @@
+<ion-view title="Мой профиль" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="profile-content" scroll="false" class="">
+        <div class="profile">
+            <div class="profile-text">Вы можете заполнить или отредактировать данные вашего профиля.</div>
+            <div class="profile-info">
+                <div class="profile-title">Ваше имя<span>*</span>:</div>
+                <div class="row profile-line">
+                    <div class="col col-90">
+                        <label class="item item-input " ng-class="{disabled:edit['name']}">
+                            <input type="text" class="color-easyBlue" id="name" ng-model="profile.name" value="Test test" placeholder="Имя"
+                                   ng-disabled="edit['name']">
+                        </label>
+                    </div>
+                    <div class="col col-10">
+                        <button class="button  button-icon icon ion-compose button-small"
+                                ng-click="toggle('name')"></button>
+                    </div>
+                </div>
+                <div class="profile-title">Ваш телефон<span>*</span>:</div>
+                <div class="row profile-line">
+                    <div class="col col-90">
+                        <label class="item item-input " ng-class="{disabled:edit['phone']}">
+                            <input type="text" class="color-easyBlue" id="phone" ng-model="profile.phone" value="" placeholder="Телефон"
+                                   ng-disabled="edit['phone']">
+                        </label>
+                    </div>
+                    <div class="col col-10">
+                        <button class="button  button-icon icon ion-compose button-small"
+                                ng-click="toggle('phone')"></button>
+                    </div>
+                </div>
+                <div class="profile-title">Ваш e-mail:</div>
+                <div class="row profile-line">
+                    <div class="col col-90">
+                        <label class="item item-input " ng-class="{disabled:edit['email']}">
+                            <input type="text" class="color-easyBlue" id="email" ng-model="profile.email" value="" placeholder="e-mail"
+                                   ng-disabled="edit['email']">
+                        </label>
+                    </div>
+                    <div class="col col-10">
+                        <button class="button  button-icon icon ion-compose button-small"
+                                ng-click="toggle('email')"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-footer row" ng-hide="hideFooter">
+            <div class="col col-50 left ">
+            </div>
+            <div class="col col-50 right">
+                <div class="align middle" ng-click="save()">Сохранить
+                    <a class="button button-icon icon ion-ios-arrow-right button-small button-middle"></a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

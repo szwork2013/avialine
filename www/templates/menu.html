@@ -1,0 +1,27 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-pane ion-side-menu-content>
+        <ion-nav-bar id="navBar" class="nav-title-slide-full bar-dark bar-darker">
+            <ion-nav-back-button class="button-clear">
+            </ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+    </ion-pane>
+    <ion-side-menu side="left" class="menu">
+        <header class="bar bar-header bar-stable">
+            <h1 class="title">{{profile.name || "Ваше имя"}}</h1>
+        </header>
+        <ion-content class="has-header suka">
+            <ion-list>
+                <ion-item class="sidemenu-item" nav-clear menu-close ng-click="go('menu.main')">
+                    Главная
+                </ion-item>
+                <ion-item class="sidemenu-item" nav-clear menu-close ng-click="go('menu.history')">
+                    Мои заказы
+                </ion-item>
+                <ion-item class="sidemenu-item" nav-clear menu-close ng-click="go('menu.profile')">
+                    Мой профиль
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

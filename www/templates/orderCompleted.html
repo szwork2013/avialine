@@ -1,0 +1,33 @@
+<ion-view title="Заказ оформлен" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios-search-strong search-button" ng-click="search()"></button>
+    </ion-nav-buttons>
+    <ion-content scroll="false">
+        <div class="history">
+            <div class="cart-title-text color-easyBlue">Заказ №{{order.id}} оформлен. Вы можете отслеживать статус выполнения
+                заказов на <a href="#/menu/history">странице ваших заказов </a></div>
+            <ion-scroll class="scrl" direction="y" class="itemcard-description" has-bouncing="false"
+                        scrollbar-y="false">
+                <div class="hist-item row">
+                    <div class="col col-66 hist-item-text">
+                        <span class="orderNumber color-easyBlue">Заказ №{{order.id}}</span><br>
+                        <span class="color-hardBlue">{{order.ordersQuantity}} товаров на сумму
+                            <span class="color-orange">{{order.price['eur']}} EUR</span>
+                            <span class="color-hardBlue">({{order.price['rub']}} руб)</span>
+                        </span>
+                    </div>
+                    <div class="butt col col-33">
+                        <button class="processing button  button-small button-balanced">
+                            {{order.status}}
+                        </button>
+                    </div>
+                </div>
+            </ion-scroll>
+        </div>
+
+
+    </ion-content>
+</ion-view>

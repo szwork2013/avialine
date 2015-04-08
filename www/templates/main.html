@@ -1,0 +1,68 @@
+<ion-view title="Авиалайн" class="" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios-search-strong search-button" ng-click="search()"></button>
+    </ion-nav-buttons>
+    <ion-content scroll="false">
+        <div class="main">
+            <div class="main-header row">
+                <div class="col col-50 left-header ">
+                </div>
+                <div class="col col-50 right-header">
+                    <div class="align middle">
+                        <div class="counter color-yellow font-size-3">{{1233}}</div>
+                        <div class="font-size-09 color-white">товаров в каталоге сегодня</div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-buttons row">
+                <button class=" button button-flat col" ng-click="showCatalogue = true"
+                        ng-class="{active:showCatalogue}">
+                    <div class=" align middle-center">Каталог товаров</div>
+                </button>
+                <!--                <button class="button button-flat col col-50" ng-click="showCatalogue = false"
+                                        ng-class="{active:!showCatalogue}">
+                                    <div class=" align middle-center">Популярное</div>
+                                </button>-->
+            </div>
+            <ion-scroll class="category-content" ng-show="showCatalogue">
+                <div class="category" ng-repeat="category in categories"
+                     ng-click="go('menu.category', {id: category.id, name: category.name})">
+                    <div class="picture" ng-style="{'background-image':'url('+baseUrl+category.picture+')'}"></div>
+                    <div class="name color-hardBlue">{{category.name}}</div>
+                </div>
+            </ion-scroll>
+            <!--<ion-scroll class="popular-content" ng-show="!showCatalogue">
+                <div class="text color-easyBlue font-size-09">Лучшие предложения на сегодня:</div>
+                <div class="popular" ng-class-even="'even'" ng-repeat="popul in popular"
+                     ng-click="go('menu.itemCard', {id:popul.id})">
+                    <div class="picture-container">
+                        <div class="picture" ng-style="{'background-image':'url('+popul.photourl+')'}"></div>
+                    </div>
+                    <div class="description align middle">
+                        <div class="name color-hardBlue font-size-12 weight-bold">{{popul.productName}}</div>
+                        <div class="art color-easyBlue font-size-08">Арт.:{{popul.productNumber}}</div>
+                        <div class="price color-hardBlue font-size-09">Цена:
+                            <span class="color-orange font-size-12">{{popul.productPrice}} EUR </span>
+                            <span class="color-hardBlue font-size-12">({{priceInRuR=500}}) RUR</span>
+                        </div>
+                    </div>
+                </div>
+            </ion-scroll>-->
+            <div class="footer row">
+                <div class="col col-50 left ">
+                    <div class="align middle">В корзине {{cart.length}} товаров на сумму: <span>{{cart.fullPrice.rub}} руб.</span>
+                    </div>
+                </div>
+                <div class="col col-50 right">
+                    <div class="align middle" ng-click="go('menu.cart')">Моя корзина
+                        <a class="button button-icon icon ion-ios-arrow-right button-small button-middle"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
