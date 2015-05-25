@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="pp.shop" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Avialine Rusdutyfree</name>
-  <description>&#xD;
-&#xD;
-    </description>
-  <author email="info@rusdutyfree.ru" href="http://rusdutyfree.ru/">&#xD;
-        Avialine&#xD;
-    </author>
+  <description>Avialine Rusdutyfree</description>
+  <author email="info@rusdutyfree.ru" href="http://rusdutyfree.ru/">Avialine Rusdutyfree</author>
   <content src="index.html"/>
   <access origin="*"/>
-  <preference name="orientation" value="portrait"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
+  <preference name="SplashScreen" value="screen" />
+  <preference name="orientation" value="portrait" />
+  <preference name="SplashScreenDelay" value="5000" />
 </widget>

@@ -2,7 +2,7 @@
     angular.module('shop', ['ionic', 'ngCordova', 'shop.controllers', 'shop.globals'])
         .constant('w', window)
         .constant('_', window._)
-        .run(function ($ionicPlatform, $cordovaKeyboard, $cordovaStatusbar) {
+        .run(function ($ionicPlatform, $cordovaKeyboard, $cordovaStatusbar, $cordovaGeolocation, geoLocation, $ionicPopup) {
             $ionicPlatform.on('menubutton', function () {
                 $ionicSideMenuDelegate.toggleLeft();
             });
@@ -15,6 +15,39 @@
             $ionicPlatform.registerBackButtonAction(function (event) {
                 event.preventDefault();
             }, Infinity);
+
+            $cordovaGeolocation
+                .getCurrentPosition()
+                .then(function (position) {
+                    geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude)
+                }, function (err) {
+                    geoLocation.setGeolocation(55.413986, 37.899876)
+                });
+
+            // begin a watch
+            var options = {
+                frequency: 1000,
+                timeout: 3000,
+                enableHighAccuracy: true
+            };
+
+            var watch = $cordovaGeolocation.watchPosition(options);
+            watch.then(null,
+                function (err) {
+                    geoLocation.setGeolocation(55.413986, 37.899876)
+                }, function (position) {
+                    if (position.coords.latitude >= 55.41 && position.coords.latitude <= 55.42 &&
+                        position.coords.longitude >= 37.89 && position.coords.longitude <= 37.90 )
+                    //if (position.coords.latitude >= 58.00 && position.coords.latitude <= 58.10 &&
+                    //    position.coords.longitude >= 56.27 && position.coords.longitude <= 56.29 )
+                    {
+                        $ionicPopup.alert({
+                            title: 'Внимание',
+                            template: '<span style="text-align: center;">Добро пожаловать в аэропорт Домодедово!<br>Перед вылетом не забудьте заглянуть к нам и приобрести товары с приятной скидкой.</span>'
+                        });
+                    }
+                    geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude)
+                });
         })
         .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             $ionicConfigProvider.backButton.previousTitleText(false).text('');
@@ -29,7 +62,9 @@
                     url: "/menu",
                     templateUrl: "templates/menu.html",
                     controller: 'MenuCtrl',
-                    abstract: true
+                    abstract: true,
+                    restrict: 'E',
+                    replace: true
                 })
                 .state('menu.main', {
                     url: "/main",
@@ -81,7 +116,7 @@
                     views: {
                         'menuContent': {
                             templateUrl: "templates/orderCompleted.html",
-                            controller: 'OrderCtrl'
+                            controller: 'OrderCompleteCtrl'
                         }
                     }
                 })
@@ -109,6 +144,15 @@
                         'menuContent': {
                             templateUrl: "templates/special.html",
                             controller: 'MainCtrl'
+                        }
+                    }
+                })
+                .state('menu.searchItems', {
+                    url: "/searchItems",
+                    views: {
+                        'menuContent': {
+                            templateUrl: "templates/searchItems.html",
+                            controller: 'MenuCtrl'
                         }
                     }
                 })

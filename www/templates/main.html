@@ -2,18 +2,16 @@
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-ios-search-strong search-button" ng-click="search()"></button>
-    </ion-nav-buttons>
+    <search-bar ng-model="search"></search-bar>
     <ion-content scroll="false">
         <div class="main">
-            <div class="main-header row">
+            <div id="main-header" class="main-header row" ng-style="{{imageExists()}}" ng-click="openBigBanner()" >
                 <div class="col col-50 left-header ">
                 </div>
-                <div class="col col-50 right-header">
+                <div id="main-header-count" class="col col-50 right-header">
                     <div class="align middle">
                         <div class="counter color-yellow font-size-3">{{1233}}</div>
-                        <div class="font-size-09 color-white">товаров в каталоге сегодня</div>
+                        <div class="font-size-09 color-white">товаров в каталоге<br/>сегодня</div>
                     </div>
                 </div>
             </div>
@@ -22,10 +20,10 @@
                         ng-class="{active:showCatalogue}">
                     <div class=" align middle-center">Каталог товаров</div>
                 </button>
-                <!--                <button class="button button-flat col col-50" ng-click="showCatalogue = false"
-                                        ng-class="{active:!showCatalogue}">
-                                    <div class=" align middle-center">Популярное</div>
-                                </button>-->
+                <button class="button button-flat col col-50" ng-click="showCatalogue = false"
+                        ng-class="{active:!showCatalogue}">
+                    <div class=" align middle-center">Популярное</div>
+                </button>
             </div>
             <ion-scroll class="category-content" ng-show="showCatalogue">
                 <div class="category" ng-repeat="category in categories"
@@ -34,26 +32,32 @@
                     <div class="name color-hardBlue">{{category.name}}</div>
                 </div>
             </ion-scroll>
-            <!--<ion-scroll class="popular-content" ng-show="!showCatalogue">
+
+            <ion-scroll class="popular-content" ng-show="!showCatalogue">
                 <div class="text color-easyBlue font-size-09">Лучшие предложения на сегодня:</div>
                 <div class="popular" ng-class-even="'even'" ng-repeat="popul in popular"
                      ng-click="go('menu.itemCard', {id:popul.id})">
                     <div class="picture-container">
-                        <div class="picture" ng-style="{'background-image':'url('+popul.photourl+')'}"></div>
+                        <!--<div class="picture" ng-style="{'background-image':'url(' + baseUrl + 'components/com_virtuemart/assets/images/vmgeneral/noimage2.jpg' + ')'}"></div>-->
+                        <div class="picture" ng-style="{'background-image':'url(' + baseUrl + popul.picture + ')'}"></div>
                     </div>
                     <div class="description align middle">
-                        <div class="name color-hardBlue font-size-12 weight-bold">{{popul.productName}}</div>
-                        <div class="art color-easyBlue font-size-08">Арт.:{{popul.productNumber}}</div>
+                        <div class="name color-hardBlue font-size-12 weight-bold">{{popul.title}}</div>
+                        <div class="art color-easyBlue font-size-08">Арт.:{{popul.sku}}</div>
                         <div class="price color-hardBlue font-size-09">Цена:
-                            <span class="color-orange font-size-12">{{popul.productPrice}} EUR </span>
-                            <span class="color-hardBlue font-size-12">({{priceInRuR=500}}) RUR</span>
+                            <span class="color-orange font-size-12">{{popul.price['eur']}} EUR </span>
+                            <span class="color-hardBlue font-size-12">({{popul.price['rub']}} RUR)</span>
                         </div>
                     </div>
                 </div>
-            </ion-scroll>-->
+            </ion-scroll>
+
             <div class="footer row">
                 <div class="col col-50 left ">
-                    <div class="align middle">В корзине {{cart.length}} товаров на сумму: <span>{{cart.fullPrice.rub}} руб.</span>
+                    <div class="align middle">
+                        В корзине {{cart.length}} товаров на сумму: <span>{{(cart.fullPrice['rub'] || 0)}} руб.</span>
+                        <!--<span ng-model="checkCartLength()"></span>-->
+                        <!--<span>{{checkCartLength}}</span>-->
                     </div>
                 </div>
                 <div class="col col-50 right">
@@ -62,6 +66,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
     </ion-content>

@@ -2,13 +2,11 @@
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-ios-refresh-empty" ng-click="refresh()"></button>
-    </ion-nav-buttons>
+    <search-bar ng-model="search"></search-bar>
     <ion-content scroll="false">
         <div class="history">
             <div class="cart-title-text color-easyBlue">На этой странице вы можете отслеживать статус выполнения заказов.</div>
-            <ion-scroll class="scrl" has-bouncing="false" direction="y" class="itemcard-description">
+            <ion-scroll class="cart-scroll itemcard-description" direction="y">
                 <div class="hist-item row" ng-repeat="order in orderHistory">
                     <div class="col col-66 hist-item-text">
                         <span class="orderNumber color-easyBlue">Заказ №{{order.id}}</span><br>

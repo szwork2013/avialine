@@ -2,9 +2,7 @@
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-ios-search-strong search-button" ng-click="search()"></button>
-    </ion-nav-buttons>
+    <search-bar ng-model="search"></search-bar>
     <ion-content scroll="false">
         <div class="catalog">
             <ion-scroll class="catalog-content">
@@ -12,7 +10,8 @@
                 <div class="popular" ng-class-even="'even'" ng-repeat="product in products"
                      ng-click="go('menu.itemCard', {id: product.id, title: product.title})">
                     <div class="picture-container">
-                        <div class="picture" ng-style="{'background-image':'url('+baseUrl+product.picture+')'}"></div>
+                        <!--<div class="picture" ng-style="{'background-image':'url(' + baseUrl + 'components/com_virtuemart/assets/images/vmgeneral/noimage2.jpg' + ')'}"></div>-->
+                        <div class="picture" ng-style="{'background-image':'url(' + baseUrl + product.picture + ')'}"></div>
                     </div>
                     <div class="description align middle">
                         <div class="name color-hardBlue font-size-12 weight-bold">{{product.title}}</div>

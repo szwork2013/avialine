@@ -10,7 +10,7 @@
                 this.root = !!root;
                 this.items = items;
             };
-            var Product = function (id, sku, title, price, description, picture) {
+            var Product = function (id, sku, title, price, price_sale, description, picture) {
                 this.id = id;
                 this.sku = sku;
                 this.title = title;
@@ -18,9 +18,29 @@
                     'eur': +(price),
                     'rub': Math.round(+(price) * $rootScope.exchangeRate)
                 };
+                this.price_sale = {
+                    'eur': +(price_sale),
+                    'rub': Math.round(+(price_sale) * $rootScope.exchangeRate)
+                };
                 this.description = description;
-                this.picture = picture;
+                this.picture = picture || 'components/com_virtuemart/assets/images/vmgeneral/noimage2.jpg';
             };
+
+            //var SearchObject = function (id, sku, title, price, price_sale, description, picture) {
+            //    this.id = id;
+            //    this.sku = sku;
+            //    this.title = title;
+            //    this.price = {
+            //        'eur': +(price),
+            //        'rub': Math.round(+(price) * $rootScope.exchangeRate)
+            //    };
+            //    this.price_sale = {
+            //        'eur': +(price_sale),
+            //        'rub': Math.round(+(price_sale) * $rootScope.exchangeRate)
+            //    };
+            //    this.description = description;
+            //    this.picture = picture || 'components/com_virtuemart/assets/images/vmgeneral/noimage2.jpg';
+            //};
 
             var BASE_URL = 'http://rusdutyfree.ru/';
 
@@ -30,11 +50,14 @@
                 getCategory: getCategory,
                 Category: Category,
                 Product: Product,
+                //SearchObject: SearchObject,
                 baseUrl: BASE_URL,
                 getCategoryItems: getCategoryItems,
                 getExchangeRate: getExchangeRate,
                 getProduct: getProduct,
-                makeOrder: makeOrder
+                makeOrder: makeOrder,
+                getSearch: getSearch,
+                getPopular: getPopular
             };
 
             function apiRequest(request, options) {
@@ -54,19 +77,21 @@
                 return apiRequest(["export.php?product_id=", params.id].join(''),
                     {
                         transformResponse: function (data) {
-                            return new Product(data.id, data.sku, data.title, data.price, data.description, data.picture)
+                            return new Product(data.id, data.sku, data.title, data.price, data.price_sale, data.description, data.picture)
                         }
                     })
             }
 
             function getCategoryItems(params) {
-                return apiRequest(["export.php?category_id=", params.id,
-                        "&offset=", isNaN(params.offset) ? 0 : params.offset,
-                        "&rows=", isNaN(params.rows) ? 10 : params.rows].join(''),
+                // return apiRequest(["export.php?category_id=", params.id,
+                        // "&offset=", isNaN(params.offset) ? 0 : params.offset,
+                        // "&rows=", isNaN(params.rows) ? 10 : params.rows].join(''),
+				return apiRequest(["export.php?category_id=", params.id].join(''),
                     {
                         transformResponse: function (data) {
                             return data.items.map(function (x) {
-                                return new Product(x.id, x.sku, x.title, x.price, x.description, x.picture)
+                                console.log(x);
+                                return new Product(x.id, x.sku, x.title, x.price, x.price_sale, x.description, x.picture)
                             })
                         }
                     })
@@ -83,6 +108,29 @@
                                 }) : new Category(data.id, data.count, data.name, data.picture, data.root, data.items));
                         }
                     });
+            }
+
+            function getSearch(params) {
+                return apiRequest(["export.php?search=", params.txt].join(''),
+                    {
+                        transformResponse: function (data) {
+                            return data.map(function (x) {
+                                return new Product(x.id, x.sku, x.title, x.price, x.price_sale, x.description, x.picture)
+                            })
+                        }
+                    })
+            }
+
+            function getPopular() {
+                // return apiRequest(["export.php?get_sale=true"].join(''),
+                return apiRequest(["export.php?rand=true"].join(''),
+                    {
+                        transformResponse: function (data) {
+                            return data.map(function (x) {
+                                return new Product(x.id, x.sku, x.title, x.price, x.price_sale, x.description, x.picture)
+                            })
+                        }
+                    })
             }
 
             function transformResponse(data, headers, status) {
@@ -159,6 +207,39 @@
                         delete cart.products[prodId];
                     }
                     return this.update(cart);
+                }
+            }
+        })
+        .factory('$localStorage', ['$window', function ($window) {
+            return {
+                set: function (key, value) {
+                    $window.localStorage[key] = value;
+                },
+                get: function (key, defaultValue) {
+                    return $window.localStorage[key] || defaultValue;
+                },
+                setObject: function (key, value) {
+                    $window.localStorage[key] = JSON.stringify(value);
+                },
+                getObject: function (key) {
+                    return JSON.parse($window.localStorage[key] || '{}');
+                }
+            }
+        }])
+        .factory('geoLocation', function ($localStorage) {
+            return {
+                setGeolocation: function (latitude, longitude) {
+                    var _position = {
+                        latitude: latitude,
+                        longitude: longitude
+                    }
+                    $localStorage.setObject('geoLocation', _position)
+                },
+                getGeolocation: function () {
+                    return glocation = {
+                        lat: $localStorage.getObject('geoLocation').latitude,
+                        lng: $localStorage.getObject('geoLocation').longitude
+                    }
                 }
             }
         })

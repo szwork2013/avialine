@@ -1,8 +1,5 @@
 <ion-view title="Моя корзина" ng-init="recount()">
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-ios-search-strong search-button" ng-click="search()"></button>
-    </ion-nav-buttons>
-
+    <search-bar ng-model="search"></search-bar>
     <ion-content class="cart-content" scroll="false">
         <div class="cart">
             <div class="cart-title-container">
@@ -35,12 +32,23 @@
                             class="font-size-08">€</span></span></div>
 
                 </div>
-                <div class="font-size-14 cart-sum row">
-                    <div class="color-easyBlue weight-bold col col-33">Итого:</div>
-                    <div class="col col-66 ">
-                        <span> &nbsp руб</span> <span class="color-hardBlue" ng-bind="cart.fullPrice['rub']"></span>
-                        <span>/ &nbsp</span><span class="color-orange font-size-08">&nbsp € &nbsp</span><span
-                            class="color-orange" ng-bind="cart.fullPrice['eur']"></span>
+                <div class="font-size-14">
+                    <div class="inline" style="width: 100%; padding: 0.5em;">
+                        <div class="color-easyBlue weight-bold col col-33" style="width: 50%;">Скидка:</div>
+                        <div class="col col-66 " style="text-align: right;">
+                            <span class="color-orange">-</span>
+                            <span class="color-orange">{{((cart.fullPrice['eur'] || 0) * 0.2).toFixed()}} €</span>
+                            <span> / -</span>
+                            <span class="color-hardBlue">{{((cart.fullPrice['rub'] || 0) * 0.2).toFixed()}} руб</span>
+                        </div>
+                    </div>
+                    <div class="inline" style="width: 100%; padding: 0.5em;">
+                        <div class="color-easyBlue weight-bold col col-33" style="width: 50%;">Итого:</div>
+                        <div class="col col-66 " style="text-align: right;">
+                            <span class="color-orange">{{((cart.fullPrice['eur'] || 0) * 0.8).toFixed()}} €</span>
+                            <span> / </span>
+                            <span class="color-hardBlue">{{((cart.fullPrice['rub'] || 0) * 0.8).toFixed()}} руб</span>
+                        </div>
                     </div>
                 </div>
             </ion-scroll>

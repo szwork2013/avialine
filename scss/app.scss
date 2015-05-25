@@ -1,3 +1,4 @@
+$baseUrl: 'http://rusdutyfree.ru/';
 $imagePath: '../img/';
 $smallFontSize: 0.9em;
 $loadTextLinear: 1.1em;
@@ -335,13 +336,14 @@ $colorEasyRed: #ca4137;
   .main-header {
     padding: 0;
     .col {
-      padding: 0;
+      /*padding-top: 1em;*/
     }
-    margin: auto 2%;
-    width: 96%;
+    margin: 0;
+    width: 100%;
     height: 17%;
     background-repeat: no-repeat;
     background-image: url($imagePath + 'main-top-bg.png');
+    /*background-image: url($baseUrl + 'templates/rusdutyfree/images/action.jpg');*/
     background-size: 100%;
     .left-header {
       background-size: 70%;
@@ -355,6 +357,7 @@ $colorEasyRed: #ca4137;
         width: 100%;
       }
       position: relative;
+      margin-top: 1em;
       background-size: 70%;
       .counter {
         margin-bottom: 0.2em;
@@ -376,22 +379,22 @@ $colorEasyRed: #ca4137;
       }
       background-color: #555c6e;
     }
-    margin: auto 2%;
-    width: 96%;
+    margin: 0;
+    width: 100%;
     color: white;
     background-size: 100%;
     height: 10%;
   }
   .category-content {
-    margin: auto 2%;
-    width: 96%;
+    margin: 0;
+    width: 100%;
     padding: 0;
     background-size: 100%;
     height: 64%;
     background-color: #e3e4ec;
     .category {
       display: inline-block;
-
+      vertical-align: top;
       margin: 3% 2.5% 0 2.5%;
       width: 28%;
       .picture {
@@ -452,10 +455,11 @@ $colorEasyRed: #ca4137;
         }
       }
       .description {
-        padding-left: 1.5em;
+        padding-left: 0.5em;
         div {
-          margin: 0.1em 0;
+          /*margin: 0.1em 0;*/
           width: 65%;
+          line-height: 1.2em;
         }
 
       }
@@ -586,7 +590,6 @@ $colorEasyRed: #ca4137;
   .hist-item {
     padding: 0.2em 0.7em;
     border-bottom: 1px solid white;
-    height: 100%;
     .butt {
       position: relative;
       button {
@@ -914,7 +917,7 @@ $colorEasyRed: #ca4137;
   color: white;
   height: 10%;
   position: absolute;
-  bottom: 0;
+  bottom: -0.1em;
   .col {
 
     padding: 0;
@@ -923,10 +926,10 @@ $colorEasyRed: #ca4137;
   margin: auto 5%;
   .left {
     font-size: 0.9em;
-    line-height: 1.2em;
+    line-height: 1.5em;
     span {
 
-      font-size: 1.6em;
+      font-size: 1.4em;
       color: #e7bc43;
     }
     .align {
@@ -935,6 +938,7 @@ $colorEasyRed: #ca4137;
   }
   .right {
     font-size: 1.3em;
+    margin-left: 0.5em;
     .align {
       width: 50%;
       text-align: right;
@@ -965,7 +969,7 @@ $colorEasyRed: #ca4137;
 }
 
 .keyboard-open .footer {
-  display: none;
+  /*display: none;*/
 }
 
 .keyboard-open .content {
@@ -974,4 +978,67 @@ $colorEasyRed: #ca4137;
 
 .search-button {
   display: none;
+}
+
+
+.inline {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #222433;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: #222433;
+}
+
+/* ------- SEARCH ----*/
+.searchBar {
+  color: #fff;
+  margin: 0 !important;
+  padding: 0;
+}
+.searchBar .icon {
+  font-size: 27px;
+  line-height: 1.2;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+.searchBar .searchTxt {
+  border-bottom: 1px solid #fff;
+  left: 55px;
+  width: calc(100% - 100px);
+  position: fixed;
+  height: calc(100% - 10px);
+}
+.searchBar.numicons2 .searchTxt {
+  width: calc(100% - 135px);
+}
+.searchBar .searchTxt > .bgdiv {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /*opacity: 0.3;*/
+}
+.searchBar .searchTxt > .bgtxt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.searchBar .searchTxt input {
+  background-color: inherit;
+  color: #222433;
+  padding-left: 5px;
+  padding-right:5px;
+}
+
+.popup-container .popup-showing .active {
+  background: none;
 }
