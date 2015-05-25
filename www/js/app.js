@@ -156,6 +156,15 @@
                         }
                     }
                 })
+                .state('menu.contacts', {
+                    url: "/contacts",
+                    views: {
+                        'menuContent': {
+                            templateUrl: "templates/contacts.html",
+                            controller: 'ContactsCtrl'
+                        }
+                    }
+                })
         });
 
 }());

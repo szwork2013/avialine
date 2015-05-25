@@ -279,6 +279,27 @@
         .controller('OrderCompleteCtrl', function ($scope, $rootScope) {
             $scope.order = $rootScope.orderHistory[$rootScope.orderHistory.length - 1];
         })
+        .controller('ContactsCtrl', function ($scope, $ionicModal) {
+
+            $ionicModal.fromTemplateUrl('templates/map.html', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.closeMap = function () {
+                $scope.modal.hide();
+            };
+
+            $scope.$on('$destroy', function () {
+                $scope.modal.remove();
+            });
+
+            $scope.openMap = function () {
+                $scope.modal.show();
+            };
+        })
+
         //.controller('SearchCtrl', function ($scope) {
         //    //$scope.products = $scope.products || [];
         //    debugger;

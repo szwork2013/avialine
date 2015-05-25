@@ -46,7 +46,7 @@
                         <div class="art color-easyBlue font-size-08">Арт.:{{popul.sku}}</div>
                         <div class="price color-hardBlue font-size-09">Цена:
                             <span class="color-orange font-size-12">{{popul.price['eur']}} EUR </span>
-                            <span class="color-hardBlue font-size-12">({{popul.price['rub']}} RUR)</span>
+                            <!--<span class="color-hardBlue font-size-12">({{popul.price['rub']}} RUR)</span>-->
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,8 @@
             <div class="footer row">
                 <div class="col col-50 left ">
                     <div class="align middle">
-                        В корзине {{cart.length}} товаров на сумму: <span>{{(cart.fullPrice['rub'] || 0)}} руб.</span>
+                        В корзине {{cart.length}} товаров на сумму: <span>{{(cart.fullPrice['eur'] || 0)}} EUR</span>
+                        <!--В корзине {{cart.length}} товаров на сумму: <span>{{(cart.fullPrice['rub'] || 0)}} руб.</span>-->
                         <!--<span ng-model="checkCartLength()"></span>-->
                         <!--<span>{{checkCartLength}}</span>-->
                     </div>

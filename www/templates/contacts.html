@@ -1,0 +1,20 @@
+<ion-view title="Контакты" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <search-bar ng-model="search"></search-bar>
+    <ion-content scroll="false" style="background-color: #e3e4ec;">
+            <div>
+                <h3 style="margin-top: 5%; text-align: center;">ООО "Авиалайн"</h3>
+                <div style="margin: 0 5%;">
+                    Адрес:<br>Московская область, Домодедовский район, а/п "Домодедово"
+                </div>
+                <div style="margin: 5%;">
+                    Электронная почта:<br><a href="mailto:info@rusdutyfree.ru">info@rusdutyfree.ru</a>
+                </div>
+            </div>
+            <div class="picture-container" ng-click="openMap()">
+                <img src="img/contacts.jpg" width="100%" />
+            </div>
+    </ion-content>
+</ion-view>
