@@ -36,10 +36,10 @@
                 function (err) {
                     geoLocation.setGeolocation(55.413986, 37.899876)
                 }, function (position) {
-                    if (position.coords.latitude >= 55.41 && position.coords.latitude <= 55.42 &&
-                        position.coords.longitude >= 37.89 && position.coords.longitude <= 37.90 )
-                    //if (position.coords.latitude >= 58.00 && position.coords.latitude <= 58.10 &&
-                    //    position.coords.longitude >= 56.27 && position.coords.longitude <= 56.29 )
+                    //if (position.coords.latitude >= 55.41 && position.coords.latitude <= 55.42 &&
+                    //    position.coords.longitude >= 37.89 && position.coords.longitude <= 37.90 )
+                    if (position.coords.latitude >= 55.415013 && position.coords.latitude <= 37.900722 &&
+                        position.coords.longitude >= 55.413147 && position.coords.longitude <= 37.904692 )
                     {
                         $ionicPopup.alert({
                             title: 'Внимание',
