@@ -13,7 +13,7 @@
             var Product = function (id, sku, title, price, price_sale, description, picture) {
                 this.id = id;
                 this.sku = sku;
-                this.title = title.replace('*','');
+                this.title = title ? title.replace('*','') : "";
                 this.price = {
                     'eur': +(price),
                     'rub': Math.round(+(price) * $rootScope.exchangeRate)
